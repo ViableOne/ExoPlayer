@@ -15,14 +15,14 @@
  */
 package com.google.android.exoplayer2.extractor.mp4;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.extractor.TrackOutput;
 import com.google.android.exoplayer2.util.Assertions;
 import com.google.android.exoplayer2.util.Log;
 
 /**
- * Encapsulates information parsed from a track encryption (tenc) box or sample group description 
+ * Encapsulates information parsed from a track encryption (tenc) box or sample group description
  * (sgpd) box in an MP4 stream.
  */
 public final class TrackEncryptionBox {

@@ -22,8 +22,10 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
 import com.google.android.exoplayer2.offline.DownloadManager.TaskState;
 import com.google.android.exoplayer2.scheduler.Requirements;
 import com.google.android.exoplayer2.scheduler.RequirementsWatcher;
@@ -79,9 +81,11 @@ public abstract class DownloadService extends Service {
   private static final Requirements DEFAULT_REQUIREMENTS =
       new Requirements(Requirements.NETWORK_TYPE_ANY, false, false);
 
-  private final @Nullable ForegroundNotificationUpdater foregroundNotificationUpdater;
+  private final @Nullable
+  ForegroundNotificationUpdater foregroundNotificationUpdater;
   private final @Nullable String channelId;
-  private final @StringRes int channelName;
+  private final @StringRes
+  int channelName;
 
   private DownloadManager downloadManager;
   private DownloadManagerListener downloadManagerListener;

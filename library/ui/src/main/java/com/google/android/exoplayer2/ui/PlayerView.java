@@ -28,9 +28,10 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Looper;
-import android.support.annotation.IntDef;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -1081,7 +1082,7 @@ public class PlayerView extends FrameLayout {
       contentFrame.addView(surfaceView, 0);
     }
   }
-  
+
   /**
    * Called when there's a change in the aspect ratio of the content being displayed. The default
    * implementation sets the aspect ratio of the content frame to that of the content, unless the

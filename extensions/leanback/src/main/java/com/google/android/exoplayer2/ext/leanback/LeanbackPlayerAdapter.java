@@ -17,7 +17,7 @@ package com.google.android.exoplayer2.ext.leanback;
 
 import android.content.Context;
 import android.os.Handler;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.support.v17.leanback.R;
 import android.support.v17.leanback.media.PlaybackGlueHost;
 import android.support.v17.leanback.media.PlayerAdapter;

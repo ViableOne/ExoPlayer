@@ -22,8 +22,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.ResultReceiver;
 import android.os.SystemClock;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.RatingCompat;
@@ -264,7 +264,7 @@ public final class MediaSessionConnector {
 
     /** See {@link MediaSessionCompat.Callback#onSetRating(RatingCompat)}. */
     void onSetRating(Player player, RatingCompat rating);
-    
+
     /** See {@link MediaSessionCompat.Callback#onSetRating(RatingCompat, Bundle)}. */
     void onSetRating(Player player, RatingCompat rating, Bundle extras);
   }
@@ -1010,7 +1010,7 @@ public final class MediaSessionConnector {
         ratingCallback.onSetRating(player, rating);
       }
     }
-    
+
     @Override
     public void onSetRating(RatingCompat rating, Bundle extras) {
       if (canDispatchToRatingCallback(PlaybackStateCompat.ACTION_SET_RATING)) {
