@@ -18,13 +18,12 @@ package com.google.android.exoplayer2.ext.leanback;
 import android.content.Context;
 import android.os.Handler;
 import androidx.annotation.Nullable;
-import android.support.v17.leanback.R;
-import android.support.v17.leanback.media.PlaybackGlueHost;
-import android.support.v17.leanback.media.PlayerAdapter;
-import android.support.v17.leanback.media.SurfaceHolderGlueHost;
 import android.util.Pair;
 import android.view.Surface;
 import android.view.SurfaceHolder;
+import androidx.leanback.media.PlaybackGlueHost;
+import androidx.leanback.media.PlayerAdapter;
+import androidx.leanback.media.SurfaceHolderGlueHost;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.ControlDispatcher;
 import com.google.android.exoplayer2.DefaultControlDispatcher;
@@ -54,7 +53,8 @@ public final class LeanbackPlayerAdapter extends PlayerAdapter implements Runnab
   private @Nullable PlaybackPreparer playbackPreparer;
   private ControlDispatcher controlDispatcher;
   private @Nullable ErrorMessageProvider<? super ExoPlaybackException> errorMessageProvider;
-  private @Nullable SurfaceHolderGlueHost surfaceHolderGlueHost;
+  private @Nullable
+  SurfaceHolderGlueHost surfaceHolderGlueHost;
   private boolean hasSurface;
   private boolean lastNotifiedPreparedState;
 

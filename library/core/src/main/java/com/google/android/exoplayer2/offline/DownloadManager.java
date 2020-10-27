@@ -21,12 +21,13 @@ import static com.google.android.exoplayer2.offline.DownloadManager.TaskState.ST
 import static com.google.android.exoplayer2.offline.DownloadManager.TaskState.STATE_QUEUED;
 import static com.google.android.exoplayer2.offline.DownloadManager.TaskState.STATE_STARTED;
 
+import androidx.annotation.IntDef;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import android.os.ConditionVariable;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
-import androidx.annotation.IntDef;
-import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.offline.DownloadAction.Deserializer;
 import com.google.android.exoplayer2.upstream.DataSource;

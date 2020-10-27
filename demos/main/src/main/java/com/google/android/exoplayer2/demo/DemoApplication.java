@@ -82,22 +82,22 @@ public class DemoApplication extends Application {
   }
 
   private synchronized void initDownloadManager() {
-    if (downloadManager == null) {
-      DownloaderConstructorHelper downloaderConstructorHelper =
-          new DownloaderConstructorHelper(getDownloadCache(), buildHttpDataSourceFactory());
-      downloadManager =
-          new DownloadManager(
-              downloaderConstructorHelper,
-              MAX_SIMULTANEOUS_DOWNLOADS,
-              DownloadManager.DEFAULT_MIN_RETRY_COUNT,
-              new File(getDownloadDirectory(), DOWNLOAD_ACTION_FILE));
-      downloadTracker =
-          new DownloadTracker(
-              /* context= */ this,
-              buildDataSourceFactory(),
-              new File(getDownloadDirectory(), DOWNLOAD_TRACKER_ACTION_FILE));
-      downloadManager.addListener(downloadTracker);
-    }
+//    if (downloadManager == null) {
+//      DownloaderConstructorHelper downloaderConstructorHelper =
+//          new DownloaderConstructorHelper(getDownloadCache(), buildHttpDataSourceFactory());
+//      downloadManager =
+//          new DownloadManager(
+//              downloaderConstructorHelper,
+//              MAX_SIMULTANEOUS_DOWNLOADS,
+//              DownloadManager.DEFAULT_MIN_RETRY_COUNT,
+//              new File(getDownloadDirectory(), DOWNLOAD_ACTION_FILE));
+//      downloadTracker =
+//          new DownloadTracker(
+//              /* context= */ this,
+//              buildDataSourceFactory(),
+//              new File(getDownloadDirectory(), DOWNLOAD_TRACKER_ACTION_FILE));
+//      downloadManager.addListener(downloadTracker);
+//    }
   }
 
   private synchronized Cache getDownloadCache() {
