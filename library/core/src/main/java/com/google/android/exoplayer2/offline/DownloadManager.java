@@ -23,7 +23,6 @@ import static com.google.android.exoplayer2.offline.DownloadManager.TaskState.ST
 
 import androidx.annotation.IntDef;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
 import android.os.ConditionVariable;
 import android.os.Handler;
 import android.os.HandlerThread;

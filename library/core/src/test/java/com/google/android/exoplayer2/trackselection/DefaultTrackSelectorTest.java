@@ -757,18 +757,18 @@ public final class DefaultTrackSelectorTest {
     TrackSelectorResult result =
         trackSelector.selectTracks(
             textRendererCapabilities, wrapFormats(forcedOnly, forcedDefault, defaultOnly, noFlag));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(forcedDefault);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(forcedDefault);
 
     // Ditto.
     result =
         trackSelector.selectTracks(
             textRendererCapabilities, wrapFormats(forcedOnly, noFlag, defaultOnly));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(defaultOnly);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(defaultOnly);
 
     // With no language preference and no text track flagged as default, the first forced should be
     // selected.
     result = trackSelector.selectTracks(textRendererCapabilities, wrapFormats(forcedOnly, noFlag));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(forcedOnly);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(forcedOnly);
 
     trackSelector.setParameters(
         Parameters.DEFAULT
@@ -780,7 +780,7 @@ public final class DefaultTrackSelectorTest {
     result =
         trackSelector.selectTracks(
             textRendererCapabilities, wrapFormats(defaultOnly, noFlag, forcedOnly, forcedDefault));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(forcedOnly);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(forcedOnly);
 
     trackSelector.setParameters(
         trackSelector.getParameters().buildUpon().setPreferredAudioLanguage("spa").build());
@@ -791,7 +791,7 @@ public final class DefaultTrackSelectorTest {
         trackSelector.selectTracks(
             textRendererCapabilities,
             wrapFormats(forcedDefault, forcedOnly, defaultOnly, noFlag, forcedOnlySpanish));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(forcedOnlySpanish);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(forcedOnlySpanish);
 
     trackSelector.setParameters(
         trackSelector
@@ -815,7 +815,7 @@ public final class DefaultTrackSelectorTest {
     result =
         trackSelector.selectTracks(
             textRendererCapabilities, wrapFormats(forcedOnly, forcedDefault, defaultOnly, noFlag));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(forcedDefault);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(forcedDefault);
 
     trackSelector.setParameters(
         trackSelector
@@ -830,7 +830,7 @@ public final class DefaultTrackSelectorTest {
     result =
         trackSelector.selectTracks(
             textRendererCapabilities, wrapFormats(noFlag, forcedOnly, forcedDefault, defaultOnly));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(noFlag);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(noFlag);
   }
 
   /**
@@ -858,13 +858,13 @@ public final class DefaultTrackSelectorTest {
         new ParametersBuilder().setSelectUndeterminedTextLanguage(true).build());
     result = trackSelector.selectTracks(textRendererCapabilites,
         wrapFormats(spanish, german, undeterminedUnd, undeterminedNull));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(undeterminedUnd);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(undeterminedUnd);
 
     ParametersBuilder builder = new ParametersBuilder().setPreferredTextLanguage("spa");
     trackSelector.setParameters(builder.build());
     result = trackSelector.selectTracks(textRendererCapabilites,
         wrapFormats(spanish, german, undeterminedUnd, undeterminedNull));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(spanish);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(spanish);
 
     result = trackSelector.selectTracks(textRendererCapabilites,
         wrapFormats(german, undeterminedUnd, undeterminedNull));
@@ -873,11 +873,11 @@ public final class DefaultTrackSelectorTest {
     trackSelector.setParameters(builder.setSelectUndeterminedTextLanguage(true).build());
     result = trackSelector.selectTracks(textRendererCapabilites,
         wrapFormats(german, undeterminedUnd, undeterminedNull));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(undeterminedUnd);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(undeterminedUnd);
 
     result = trackSelector.selectTracks(textRendererCapabilites,
         wrapFormats(german, undeterminedNull));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(undeterminedNull);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(undeterminedNull);
 
     result = trackSelector.selectTracks(textRendererCapabilites, wrapFormats(german));
     assertThat(result.selections.get(0)).isNull();
@@ -915,14 +915,14 @@ public final class DefaultTrackSelectorTest {
     // Explicit language preference for english. First renderer should be used.
     trackSelector.setParameters(trackSelector.buildUponParameters().setPreferredTextLanguage("en"));
     result = trackSelector.selectTracks(rendererCapabilities, wrapFormats(english, german));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(english);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(english);
     assertThat(result.selections.get(1)).isNull();
 
     // Explicit language preference for German. Second renderer should be used.
     trackSelector.setParameters(trackSelector.buildUponParameters().setPreferredTextLanguage("de"));
     result = trackSelector.selectTracks(rendererCapabilities, wrapFormats(english, german));
     assertThat(result.selections.get(0)).isNull();
-    assertThat(result.selections.get(1).getFormat(0)).isSameAs(german);
+    assertThat(result.selections.get(1).getFormat(0)).isSameInstanceAs(german);
   }
 
   /**
@@ -1025,14 +1025,14 @@ public final class DefaultTrackSelectorTest {
     // Without an explicit language preference, prefer the first renderer.
     TrackSelectorResult result =
         trackSelector.selectTracks(rendererCapabilities, wrapFormats(english, german));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(english);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(english);
     assertThat(result.selections.get(1)).isNull();
 
     // Explicit language preference for english. First renderer should be used.
     trackSelector.setParameters(
         trackSelector.buildUponParameters().setPreferredAudioLanguage("en"));
     result = trackSelector.selectTracks(rendererCapabilities, wrapFormats(english, german));
-    assertThat(result.selections.get(0).getFormat(0)).isSameAs(english);
+    assertThat(result.selections.get(0).getFormat(0)).isSameInstanceAs(english);
     assertThat(result.selections.get(1)).isNull();
 
     // Explicit language preference for German. Second renderer should be used.
@@ -1040,7 +1040,7 @@ public final class DefaultTrackSelectorTest {
         trackSelector.buildUponParameters().setPreferredAudioLanguage("de"));
     result = trackSelector.selectTracks(rendererCapabilities, wrapFormats(english, german));
     assertThat(result.selections.get(0)).isNull();
-    assertThat(result.selections.get(1).getFormat(0)).isSameAs(german);
+    assertThat(result.selections.get(1).getFormat(0)).isSameInstanceAs(german);
   }
 
   @Test

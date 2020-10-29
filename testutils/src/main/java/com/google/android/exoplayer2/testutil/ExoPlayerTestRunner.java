@@ -15,8 +15,8 @@
  */
 package com.google.android.exoplayer2.testutil;
 
-import static com.google.common.truth.Truth.assertThat;
 
+import static com.google.common.truth.Truth.assertThat;
 import android.content.Context;
 import android.os.HandlerThread;
 import android.os.Looper;

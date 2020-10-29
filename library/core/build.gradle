@@ -15,73 +15,72 @@ apply plugin: 'com.android.library'
 apply from: '../../constants.gradle'
 
 android {
-    compileSdkVersion project.ext.compileSdkVersion
-    buildToolsVersion project.ext.buildToolsVersion
+  compileSdkVersion project.ext.compileSdkVersion
+  buildToolsVersion project.ext.buildToolsVersion
 
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  defaultConfig {
+    minSdkVersion project.ext.minSdkVersion
+    targetSdkVersion project.ext.targetSdkVersion
+    consumerProguardFiles 'proguard-rules.txt'
+
+    testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+
+    // The following argument makes the Android Test Orchestrator run its
+    // "pm clear" command after each test invocation. This command ensures
+    // that the app's state is completely cleared between tests.
+    testInstrumentationRunnerArguments clearPackageData: 'true'
+  }
+
+  // Workaround to prevent circular dependency on project :testutils.
+  sourceSets {
+    androidTest {
+      java.srcDirs += '../../testutils/src/main/java/'
     }
-
-    defaultConfig {
-        minSdkVersion project.ext.minSdkVersion
-        targetSdkVersion project.ext.targetSdkVersion
-        consumerProguardFiles 'proguard-rules.txt'
-
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-
-        // The following argument makes the Android Test Orchestrator run its
-        // "pm clear" command after each test invocation. This command ensures
-        // that the app's state is completely cleared between tests.
-        testInstrumentationRunnerArguments clearPackageData: 'true'
+    test {
+      java.srcDirs += '../../testutils/src/main/java/'
+      java.srcDirs += '../../testutils_robolectric/src/main/java/'
     }
+  }
 
-    // Workaround to prevent circular dependency on project :testutils.
-    sourceSets {
-        androidTest {
-            java.srcDirs += '../../testutils/src/main/java/'
-        }
-        test {
-            java.srcDirs += '../../testutils/src/main/java/'
-            java.srcDirs += '../../testutils_robolectric/src/main/java/'
-        }
-    }
-
-    buildTypes {
-        // Re-enable test coverage when the following issue is fixed:
-        // https://issuetracker.google.com/issues/37019591
-        // debug {
-        //    testCoverageEnabled = true
-        // }
-    }
+  buildTypes {
+    // Re-enable test coverage when the following issue is fixed:
+    // https://issuetracker.google.com/issues/37019591
+    // debug {
+    //    testCoverageEnabled = true
+    // }
+  }
 }
 
 dependencies {
-    implementation 'androidx.annotation:annotation:1.0.1'
-    compileOnly 'org.checkerframework:checker-qual:' + checkerframeworkVersion
-    compileOnly 'org.checkerframework:checker-compat-qual:' + checkerframeworkVersion
-    androidTestImplementation 'androidx.test:runner:' + testRunnerVersion
-    androidTestImplementation 'com.google.auto.value:auto-value-annotations:' + autoValueVersion
-    androidTestImplementation 'com.google.dexmaker:dexmaker:' + dexmakerVersion
-    androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:' + dexmakerVersion
-    androidTestImplementation 'com.google.truth:truth:' + truthVersion
-    androidTestImplementation 'org.mockito:mockito-core:' + mockitoVersion
-    androidTestAnnotationProcessor 'com.google.auto.value:auto-value:' + autoValueVersion
-    testImplementation 'com.google.truth:truth:' + truthVersion
-    testImplementation 'junit:junit:' + junitVersion
-    testImplementation 'org.mockito:mockito-core:' + mockitoVersion
-    testImplementation 'org.robolectric:robolectric:' + robolectricVersion
-    testImplementation 'com.google.auto.value:auto-value-annotations:' + autoValueVersion
-    testAnnotationProcessor 'com.google.auto.value:auto-value:' + autoValueVersion
+  implementation 'androidx.annotation:annotation:' + androidxAnnotationVersion
+  compileOnly 'com.google.code.findbugs:jsr305:' + jsr305Version
+  compileOnly 'org.checkerframework:checker-qual:' + checkerframeworkVersion
+  compileOnly 'org.checkerframework:checker-compat-qual:' + checkerframeworkCompatVersion
+  compileOnly 'org.jetbrains.kotlin:kotlin-annotations-jvm:' + kotlinAnnotationsVersion
+  androidTestImplementation 'androidx.test:runner:' + androidxTestRunnerVersion
+  androidTestImplementation 'com.google.dexmaker:dexmaker:' + dexmakerVersion
+  androidTestImplementation 'com.google.dexmaker:dexmaker-mockito:' + dexmakerVersion
+  androidTestImplementation 'androidx.test:core:1.2.0'
+  androidTestImplementation(project(modulePrefix + 'testutils')) {
+    exclude module: modulePrefix.substring(1) + 'library-core'
+  }
+  testImplementation 'com.squareup.okhttp3:mockwebserver:' + mockWebServerVersion
+  testImplementation 'org.robolectric:robolectric:' + robolectricVersion
+  testImplementation project(modulePrefix + 'testutils')
 }
 
 ext {
-    javadocTitle = 'Core module'
+  javadocTitle = 'Core module'
 }
 apply from: '../../javadoc_library.gradle'
 
 ext {
-    releaseArtifact = 'exoplayer-core'
-    releaseDescription = 'The ExoPlayer library core module.'
+  releaseArtifact = 'exoplayer-core'
+  releaseDescription = 'The ExoPlayer library core module.'
 }
 apply from: '../../publish.gradle'

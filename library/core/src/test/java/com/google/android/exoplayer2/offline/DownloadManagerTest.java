@@ -391,25 +391,25 @@ public class DownloadManagerTest {
     downloadManagerListener.blockUntilTasksCompleteAndThrowAnyDownloadError();
   }
 
-  private void setUpDownloadManager(final int maxActiveDownloadTasks) throws Exception {
+    private void setUpDownloadManager(final int maxActiveDownloadTasks) throws Exception {
     if (downloadManager != null) {
       releaseDownloadManager();
     }
     try {
       runOnMainThread(
           () -> {
-            downloadManager =
-                new DownloadManager(
-                    new DownloaderConstructorHelper(
-                        Mockito.mock(Cache.class), DummyDataSource.FACTORY),
-                    maxActiveDownloadTasks,
-                    MIN_RETRY_COUNT,
-                    actionFile,
-                    ProgressiveDownloadAction.DESERIALIZER);
-            downloadManagerListener =
-                new TestDownloadManagerListener(downloadManager, dummyMainThread);
-            downloadManager.addListener(downloadManagerListener);
-            downloadManager.startDownloads();
+//            downloadManager =
+//                new DownloadManager(
+//                  new DownloaderConstructorHelper(
+//                    Mockito.mock(Cache.class), DummyDataSource.FACTORY),
+//                    maxActiveDownloadTasks,
+//                    MIN_RETRY_COUNT,
+//                    actionFile,
+//                    ProgressiveDownloadAction.DESERIALIZER);
+//            downloadManagerListener =
+//                new TestDownloadManagerListener(downloadManager, dummyMainThread);
+//            downloadManager.addListener(downloadManagerListener);
+//            downloadManager.startDownloads();
           });
     } catch (Throwable throwable) {
       throw new Exception(throwable);

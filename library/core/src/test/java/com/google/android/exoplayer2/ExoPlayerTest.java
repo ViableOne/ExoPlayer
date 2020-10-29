@@ -20,6 +20,8 @@ import static org.junit.Assert.fail;
 
 import android.content.Context;
 import androidx.annotation.Nullable;
+
+import android.graphics.SurfaceTexture;
 import android.view.Surface;
 import com.google.android.exoplayer2.Player.DiscontinuityReason;
 import com.google.android.exoplayer2.Player.EventListener;
@@ -2072,7 +2074,7 @@ public final class ExoPlayerTest {
 
     testRunner.assertPlayedPeriodIndices(0, 1, 0, 1);
     assertThat(mediaSource.getCreatedMediaPeriods())
-        .containsAllOf(
+        .containsAtLeast(
             new MediaPeriodId(
                 timeline.getUidOfPeriod(/* periodIndex= */ 0), /* windowSequenceNumber= */ 0),
             new MediaPeriodId(
@@ -2590,8 +2592,8 @@ public final class ExoPlayerTest {
   // Internal methods.
 
   private static ActionSchedule.Builder addSurfaceSwitch(ActionSchedule.Builder builder) {
-    final Surface surface1 = new Surface(null);
-    final Surface surface2 = new Surface(null);
+    final Surface surface1 = new Surface(new SurfaceTexture(/* texName= */ 0));
+    final Surface surface2 = new Surface(new SurfaceTexture(/* texName= */ 1));
     return builder
         .executeRunnable(
             new PlayerRunnable() {
