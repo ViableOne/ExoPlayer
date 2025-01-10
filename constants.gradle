@@ -16,9 +16,9 @@ project.ext {
     releaseVersion = '2.12.1'
     releaseVersionCode = 2012001
     minSdkVersion = 21
-    appTargetSdkVersion = 33
-    targetSdkVersion = 33 // TODO: Bump once b/143232359 is resolved. Also fix TODOs in UtilTest.
-    compileSdkVersion = 33
+    appTargetSdkVersion = 34
+    targetSdkVersion = 34 // TODO: Bump once b/143232359 is resolved. Also fix TODOs in UtilTest.
+    compileSdkVersion = 34
     dexmakerVersion = '1.2'
     junitVersion = '4.13-rc-2'
     guavaVersion = '27.1-android'
@@ -40,7 +40,7 @@ project.ext {
     androidxTestRunnerVersion = '1.2.0'
     androidxTestRulesVersion = '1.2.0'
     testRunnerVersion = '1.1.0'
-    buildToolsVersion = '33.0.0'
+    buildToolsVersion = '34.0.0'
     truthVersion = '1.0'
     autoValueVersion = '1.7.4'
     modulePrefix = ':'

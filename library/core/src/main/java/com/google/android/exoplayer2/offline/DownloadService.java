@@ -475,7 +475,11 @@ public abstract class DownloadService extends Service {
 
     public void update() {
       TaskState[] taskStates = downloadManager.getAllTaskStates();
-      startForeground(notificationId, getForegroundNotification(taskStates));
+      if(android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+        startForeground(notificationId, getForegroundNotification(taskStates), ServiceInfo.FOREGROUND_SERVICE_TYPE_DATA_SYNC);
+      } else {
+        startForeground(notificationId, getForegroundNotification(taskStates));
+      }
       notificationDisplayed = true;
       if (periodicUpdatesStarted) {
         handler.removeCallbacks(this);
