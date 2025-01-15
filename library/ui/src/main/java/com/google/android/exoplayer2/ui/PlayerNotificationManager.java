@@ -767,7 +767,7 @@ public class PlayerNotificationManager {
       Notification notification = updateNotification(null);
       if (!isNotificationStarted) {
         isNotificationStarted = true;
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
           context.registerReceiver(notificationBroadcastReceiver, intentFilter, Context.RECEIVER_NOT_EXPORTED);
         } else {
           context.registerReceiver(notificationBroadcastReceiver, intentFilter);
